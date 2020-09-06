@@ -14,8 +14,13 @@
 #include <amqp.h>
 #include <amqp_tcp_socket.h>
 
-#include <opencv2\opencv.hpp>
+#include <opencv2/opencv.hpp>
 
+
+#define AMQPLOGIN "guest"
+#define AMQPPSWD "guest"
+#define AMQPHOST "localhost"
+#define AMQPPORT 32777
 
 // exception pointer used to transport exceptions between threads
 static std::exception_ptr teptr = nullptr;
@@ -42,7 +47,7 @@ class RabbitMQ_consumer
 {
 public:
 
-	RabbitMQ_consumer(std::string producer_name, std::string hostname = "localhost", int port = 5672, std::string exchange_name = "my_exchange_1", std::string exchange_type = "direct", std::string routing_key = "my_key_1")
+	RabbitMQ_consumer(std::string producer_name, std::string hostname = AMQPHOST, int port = AMQPPORT, std::string exchange_name = "my_exchange_1", std::string exchange_type = "direct", std::string routing_key = "my_key_1")
 	{
 		this->name = producer_name;
 		this->hostname = hostname;
@@ -343,7 +348,7 @@ int main(int argc, char** argv)
 
 	string arg = (argc > 1) ? argv[1] : "text";
 
-	RabbitMQ_consumer cons1("cons1", "localhost", 5672, "my_exchange_1", "direct", arg);
+	RabbitMQ_consumer cons1("cons1", AMQPHOST, AMQPPORT, "my_exchange_1", "direct", arg);
 
 	try
 	{
