@@ -1,8 +1,7 @@
 [requires]
 amqp-cpp/4.1.7
 rabbitmq-c/0.10.0
-opencv/4.3.0@conan/stable
-
+opencv/4.5.1
 
 [generators]
 cmake
